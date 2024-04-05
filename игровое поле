@@ -1,0 +1,7 @@
+    def setup_board(self, mode):
+        self.clear_window()
+        self.board = [['' for _ in range(7)] for _ in range(7)]
+        self.current_player = 0
+        self.game_mode = mode
+        self.status_label = tk.Label(self.master, text='', font=('Arial', 20), bg='#f0f0f0', fg='black')
+        self.status_label.grid(row=7, column=0, columnspan=7, sticky='ew')
