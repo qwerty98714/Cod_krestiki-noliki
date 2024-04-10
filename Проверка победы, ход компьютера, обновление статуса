@@ -1,0 +1,43 @@
+ def check_win(self, x, y):
+        directions = [(0, 1), (1, 0), (1, 1), (1, -1)]
+        symbol = self.board[x][y]
+        for dx, dy in directions:
+            line = [(x, y)]
+            for d in [1, -1]:
+                nx, ny = x, y
+                while True:
+                    nx += dx * d
+                    ny += dy * d
+                    if 0 <= nx < 7 and 0 <= ny < 7 and self.board[nx][ny] == symbol:
+                        line.append((nx, ny))
+                    else:
+                        break
+            if len(line) >= 4:
+                return line
+        return None
+
+    def computer_move(self):
+        for check_win in [True, False]:
+            for x in range(7):
+                for y in range(7):
+                    if self.board[x][y] == '':
+                        self.board[x][y] = self.player_symbols[1] if check_win else self.player_symbols[0]
+                        if self.check_win(x, y):
+                            self.board[x][y] = ''
+                            self.make_move(x, y)
+                            return
+                        self.board[x][y] = ''
+        empty_cells = [(x, y) for x in range(7) for y in range(7) if self.board[x][y] == '']
+        if empty_cells:
+            move = random.choice(empty_cells)
+            self.make_move(*move)
+
+    def update_status(self):
+        if self.game_mode == 'computer':
+            if self.current_player == 0:
+                status_text = f"Ваш ход: {self.player_symbols[self.current_player]}"
+            else:
+                status_text = "Ход компьютера"
+        else:
+            status_text = f"Ход игрока: {self.player_symbols[self.current_player]}"
+        self.status_label['text'] = status_text
