@@ -1,8 +1,0 @@
-    def create_menu(self):
-        self.clear_window()
-        menu_frame = tk.Frame(self.master, bg='#f0f0f0', padx=20, pady=20)
-        menu_frame.pack(expand=True)
-        button_font = font.Font(family='Helvetica', size=24, weight='bold')
-        buttons_options = {'font': button_font, 'bg': '#a7c7e7', 'fg': 'white', 'padx': 10, 'pady': 5}
-        tk.Button(menu_frame, text="Играть с другом", **buttons_options, command=lambda: self.setup_board('friend')).pack(fill=tk.BOTH, expand=True, pady=10)
-        tk.Button(menu_frame, text="Играть с компьютером", **buttons_options, command=lambda: self.setup_board('computer')).pack(fill=tk.BOTH, expand=True, pady=10)
