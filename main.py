@@ -189,6 +189,7 @@ class TicTacToeApp:
         self.master.quit()
 
 
+# sdfsf fsfsdf fs
 # Запуск приложения
 if __name__ == "__main__":
     root = tk.Tk()
